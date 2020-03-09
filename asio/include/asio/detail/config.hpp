@@ -404,7 +404,11 @@
 # if !defined(ASIO_DISABLE_CONCEPTS)
 #  if __cpp_concepts
 #   define ASIO_HAS_CONCEPTS 1
-#   define ASIO_CONCEPT concept bool
+#   if __cpp_concepts >= 201907
+#    define ASIO_CONCEPT concept
+#   else // __cpp_concepts >= 201907
+#    define ASIO_CONCEPT concept bool
+#   endif // __cpp_concepts >= 201907
 #  endif // __cpp_concepts
 # endif // !defined(ASIO_DISABLE_CONCEPTS)
 #endif // !defined(ASIO_HAS_CONCEPTS)
